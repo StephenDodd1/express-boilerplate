@@ -5,12 +5,12 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const lyricsRouter = require('./lyrics/lyrics-router')
-const { NODE_ENV, /*CLIENT_ORIGIN,*/ DATABASE_URL } = require("./config")
+const { NODE_ENV, CLIENT_ORIGIN, DATABASE_URL } = require("./config")
 
 const app = express()
 const knex = require("knex");
 
-app.use(cors())
+app.use(cors({origin: CLIENT_ORIGIN}))
 
 const db = knex({
   client: "pg",
